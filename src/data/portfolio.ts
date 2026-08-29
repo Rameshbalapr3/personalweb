@@ -8,6 +8,13 @@ export interface ProjectScreenshot {
   caption?: string;
 }
 
+export interface BeforeAfter {
+  before: string;
+  beforeLabel: string;
+  after: string;
+  afterLabel: string;
+}
+
 export interface Project {
   id: string;
   number: string;
@@ -22,11 +29,12 @@ export interface Project {
   engineeringChallenges: string[];
   outcome: string;
   outcomeMetric: string;
+  beforeAfter: BeforeAfter;
   role: string;
   approachLine: string;
   impactChips: string[];
   featured?: boolean;
-  screenshots: ProjectScreenshot[];
+  screenshots?: ProjectScreenshot[];
   demoUrl?: string;
   githubUrl?: string;
 }
@@ -146,8 +154,14 @@ export const projects: Project[] = [
     role: "Full-stack ownership — RAG pipeline, document ingestion, and mobile PWA",
     approachLine:
       "Natural-language requests → pgvector retrieval → structured quotes exported as PDF.",
-    impactChips: ["Production", "RAG + pgvector", "Mobile PWA"],
-    outcomeMetric: "~30 min → ~2 min quotes",
+    impactChips: ["Production", "RAG + pgvector", "Owned E2E"],
+    outcomeMetric: "~30 min → ~2 min",
+    beforeAfter: {
+      before: "~30 min",
+      beforeLabel: "Manual rate search + quote build",
+      after: "~2 min",
+      afterLabel: "AI quote from natural language",
+    },
     featured: true,
     technologies: [
       "React",
@@ -176,18 +190,6 @@ export const projects: Project[] = [
       { label: "Gemini" },
       { label: "Quote PDF" },
     ],
-    screenshots: [
-      {
-        src: "/images/projects/quotebuddy-chat.png",
-        alt: "QuoteBuddy AI chat interface for natural-language quote generation",
-        caption: "AI chat interface",
-      },
-      {
-        src: "/images/projects/quotebuddy-quote.png",
-        alt: "QuoteBuddy structured quote preview and PDF export",
-        caption: "Quote preview & export",
-      },
-    ],
     problem:
       "Sales teams spent ~30 minutes manually searching rate cards and building quotations during client meetings.",
     solution:
@@ -212,8 +214,14 @@ export const projects: Project[] = [
     role: "Full-stack ownership — webhooks, auth, assignment logic, and SLA automation",
     approachLine:
       "Meta Lead Ads webhooks → HMAC verification → round-robin assignment → SLA enforcement.",
-    impactChips: ["Production", "Meta Webhooks", "HMAC + JWT"],
-    outcomeMetric: "Webhook → assign → SLA",
+    impactChips: ["Production", "HMAC webhooks", "Owned E2E"],
+    outcomeMetric: "Secure ingest → assign",
+    beforeAfter: {
+      before: "Manual",
+      beforeLabel: "Leads lost across channels",
+      after: "Auto",
+      afterLabel: "Webhook → assign → SLA",
+    },
     featured: true,
     technologies: [
       "Next.js",
@@ -241,18 +249,6 @@ export const projects: Project[] = [
       { label: "Assign" },
       { label: "Follow-up" },
     ],
-    screenshots: [
-      {
-        src: "/images/projects/lms-dashboard.png",
-        alt: "Lead Management Platform dashboard with lead tracking",
-        caption: "Lead dashboard",
-      },
-      {
-        src: "/images/projects/lms-webhook.png",
-        alt: "Lead Management Platform webhook and assignment flow",
-        caption: "Webhook & assignment flow",
-      },
-    ],
     problem:
       "Sales teams needed a secure, centralized system to ingest leads from Meta, assign them fairly, and enforce follow-up SLAs.",
     solution:
@@ -277,8 +273,14 @@ export const projects: Project[] = [
     role: "Full-stack ownership — import pipelines, AI extraction, and REST API layer",
     approachLine:
       "Vendor Excel/PDF/image → column mapping & OCR → validated rate library.",
-    impactChips: ["Production", "29 API routes", "Gemini Vision"],
-    outcomeMetric: "29 REST API routes",
+    impactChips: ["Production", "29 APIs", "Gemini Vision"],
+    outcomeMetric: "29 production APIs",
+    beforeAfter: {
+      before: "Messy files",
+      beforeLabel: "Excel / PDF / image rate chaos",
+      after: "Library",
+      afterLabel: "Searchable validated rates",
+    },
     technologies: [
       "Next.js",
       "React",
@@ -301,18 +303,6 @@ export const projects: Project[] = [
       { label: "Extract" },
       { label: "Validate" },
       { label: "Library" },
-    ],
-    screenshots: [
-      {
-        src: "/images/projects/rms-upload.png",
-        alt: "Rate Management System vendor Excel upload and column mapping",
-        caption: "Excel upload & mapping",
-      },
-      {
-        src: "/images/projects/rms-extraction.png",
-        alt: "Rate Management System AI rate extraction from documents",
-        caption: "AI extraction pipeline",
-      },
     ],
     problem:
       "Vendor rates arrived in inconsistent Excel, PDF, and image formats, making pricing hard to centralize and search.",
@@ -338,8 +328,14 @@ export const projects: Project[] = [
     role: "Full-stack ownership — map discovery, booking workflow, and admin console",
     approachLine:
       "Map-first discovery → geospatial filters → cart → GST-aware booking.",
-    impactChips: ["Production", "Geospatial", "Booking + GST"],
-    outcomeMetric: "Map → filter → book",
+    impactChips: ["Production", "Geospatial", "Owned E2E"],
+    outcomeMetric: "Map → book flow",
+    beforeAfter: {
+      before: "Scattered",
+      beforeLabel: "Hard to find outdoor inventory",
+      after: "One map",
+      afterLabel: "Discover → filter → book",
+    },
     technologies: [
       "Next.js",
       "React",
@@ -361,18 +357,6 @@ export const projects: Project[] = [
       { label: "Inventory" },
       { label: "Cart" },
       { label: "Booking" },
-    ],
-    screenshots: [
-      {
-        src: "/images/projects/adspot-map.png",
-        alt: "AdSpot map-first outdoor media discovery interface",
-        caption: "Map discovery",
-      },
-      {
-        src: "/images/projects/adspot-booking.png",
-        alt: "AdSpot booking workflow and shopping cart",
-        caption: "Booking workflow",
-      },
     ],
     problem:
       "Advertisers needed one place to discover outdoor inventory by location and price, then book with accurate GST.",

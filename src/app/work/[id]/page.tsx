@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArchitectureFlow } from "@/components/projects/ArchitectureFlow";
 import { ImpactChips } from "@/components/projects/ImpactChips";
-import { ProjectShot } from "@/components/projects/ProjectShot";
+import { ProjectVisual } from "@/components/projects/ProjectVisual";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { getProjectById, projects } from "@/data/portfolio";
@@ -35,8 +35,6 @@ export default async function WorkCaseStudyPage({ params }: WorkPageProps) {
   const { id } = await params;
   const project = getProjectById(id);
   if (!project) notFound();
-
-  const [hero, ...rest] = project.screenshots;
 
   return (
     <main className="min-h-screen bg-background pb-20">
@@ -70,11 +68,10 @@ export default async function WorkCaseStudyPage({ params }: WorkPageProps) {
         </p>
         <ImpactChips chips={project.impactChips} className="mt-6" />
 
-        <ProjectShot
-          screenshot={hero}
-          title={project.title}
-          priority
-          className="mt-10 aspect-[16/9] min-h-[240px] w-full"
+        <ProjectVisual
+          project={project}
+          variant="page"
+          className="mt-10 min-h-[280px] w-full"
         />
 
         <div className="mt-14 grid gap-12 lg:grid-cols-2">
@@ -95,30 +92,6 @@ export default async function WorkCaseStudyPage({ params }: WorkPageProps) {
             </p>
           </section>
         </div>
-
-        {rest.length > 0 && (
-          <section className="mt-14">
-            <h2 className="font-mono text-xs uppercase tracking-widest text-accent">
-              Product surfaces
-            </h2>
-            <div className="mt-5 grid gap-5 sm:grid-cols-2">
-              {rest.map((shot) => (
-                <div key={shot.src}>
-                  <ProjectShot
-                    screenshot={shot}
-                    title={project.title}
-                    className="aspect-[16/10] w-full"
-                  />
-                  {shot.caption && (
-                    <p className="mt-2 font-mono text-xs text-muted">
-                      {shot.caption}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
 
         <section className="mt-14">
           <h2 className="mb-5 font-mono text-xs uppercase tracking-widest text-accent">
