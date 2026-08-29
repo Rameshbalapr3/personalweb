@@ -1,16 +1,19 @@
 import { FadeUp } from "@/components/animations/FadeUp";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { experience } from "@/data/portfolio";
 import { Briefcase, MapPin } from "lucide-react";
 
 export function Experience() {
   return (
-    <section id="experience" className="py-20 sm:py-28">
+    <section id="experience" className="border-t border-border/60 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <SectionLabel number="02" label="Experience" />
-
         <FadeUp>
-          <div className="gradient-border rounded-2xl p-6 sm:p-8">
+          <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
+            Experience
+          </p>
+        </FadeUp>
+
+        <FadeUp delay={0.05}>
+          <div className="rounded-2xl border border-border/80 bg-card/40 p-6 sm:p-8">
             <div className="flex flex-wrap items-start gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft">
                 <Briefcase className="h-5 w-5 text-accent" />
@@ -53,7 +56,7 @@ export function Experience() {
 
               <div>
                 <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-accent">
-                  Products Built
+                  Products built
                 </h3>
                 <ul className="space-y-2">
                   {experience.productsBuilt.map((product) => (
@@ -67,9 +70,6 @@ export function Experience() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-4 text-xs text-muted">
-                  See project details, tech stack, and case studies below.
-                </p>
               </div>
             </div>
           </div>

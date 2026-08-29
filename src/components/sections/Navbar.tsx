@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
-import { navLinks, siteConfig } from "@/lib/config";
-import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Download, Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { Button } from "@/components/ui/Button";
+import { navLinks, siteConfig } from "@/lib/config";
+import { cn } from "@/lib/utils";
 
 const subscribe = () => () => {};
 const getSnapshot = () => true;
@@ -15,7 +15,7 @@ const getServerSnapshot = () => false;
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("#home");
+  const [activeSection, setActiveSection] = useState("#work");
   const { theme, setTheme, resolvedTheme } = useTheme();
   const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
@@ -41,11 +41,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
   }, [mobileOpen]);
 
   const handleNavClick = (href: string) => {

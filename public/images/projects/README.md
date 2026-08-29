@@ -1,6 +1,6 @@
 # Project Screenshots
 
-Drop your project screenshots here. Until added, the site shows styled UI mockup placeholders.
+Drop real product screenshots here. Until then, cards show styled placeholders.
 
 ## Required files
 
@@ -20,11 +20,11 @@ Drop your project screenshots here. Until added, the site shows styled UI mockup
 - Use 16:9 or browser-window crops
 - Blur or redact sensitive client data
 - Optimize with WebP or compressed PNG (&lt; 300KB each)
-- `object-top` crop is used — keep UI headers visible
+- Keep UI headers visible — cards crop with `object-top`
 
-## Open Graph (LinkedIn shares)
+## Open Graph
 
-Add `public/og-image.jpg` (1200×630) — can be a branded card with your name, title, and photo.
+Add `public/og-image.jpg` (1200×630).
 
 ## Resume
 

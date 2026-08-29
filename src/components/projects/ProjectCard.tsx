@@ -1,125 +1,118 @@
 "use client";
 
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { ArchitectureFlow } from "@/components/projects/ArchitectureFlow";
 import { ImpactChips } from "@/components/projects/ImpactChips";
+import { ProjectShot } from "@/components/projects/ProjectShot";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import type { Project } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, Star } from "lucide-react";
 
 interface ProjectCardProps {
   project: Project;
-  onViewDetails: (project: Project) => void;
   className?: string;
   variant?: "default" | "featured";
 }
 
 export function ProjectCard({
   project,
-  onViewDetails,
   className,
   variant = "default",
 }: ProjectCardProps) {
   const shouldReduceMotion = useReducedMotion();
   const isFeatured = variant === "featured" || project.featured;
+  const heroShot = project.screenshots[0];
 
   return (
     <motion.article
       className={cn(
-        "gradient-border group relative overflow-hidden rounded-2xl",
-        isFeatured ? "p-6 sm:p-8 lg:p-10" : "p-6 sm:p-8",
+        "group relative overflow-hidden rounded-2xl border border-border/80 bg-card/40",
+        isFeatured ? "p-0" : "p-0",
         className
       )}
-      whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+      whileHover={shouldReduceMotion ? undefined : { y: -3 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="mb-4 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-xs text-accent">
-          {project.number} / 04
-        </span>
-        {project.featured && (
-          <span className="inline-flex items-center gap-1 rounded-full border border-accent/30 bg-accent-soft px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-accent">
-            <Star className="h-3 w-3 fill-current" />
-            Featured
-          </span>
-        )}
-      </div>
-
-      <h3
+      <div
         className={cn(
-          "font-semibold tracking-tight",
-          isFeatured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
+          "grid",
+          isFeatured ? "lg:grid-cols-[1.35fr_1fr]" : "grid-cols-1"
         )}
       >
-        {project.title}
-      </h3>
+        <ProjectShot
+          screenshot={heroShot}
+          title={project.title}
+          priority={isFeatured}
+          className={cn(
+            "min-h-[220px] rounded-none border-0 border-b border-border/70 sm:min-h-[260px]",
+            isFeatured
+              ? "lg:min-h-full lg:border-b-0 lg:border-r"
+              : "aspect-[16/10]"
+          )}
+        />
 
-      <p className="mt-2 font-mono text-xs text-muted">{project.role}</p>
+        <div className={cn("flex flex-col", isFeatured ? "p-6 sm:p-8" : "p-5 sm:p-6")}>
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            <span className="font-mono text-xs text-accent">
+              {project.number} / 04
+            </span>
+            <span className="rounded-full border border-accent/25 bg-accent-soft px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-accent">
+              {project.outcomeMetric}
+            </span>
+          </div>
 
-      <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
-        {project.shortDescription}
-      </p>
-
-      <p className="mt-3 rounded-lg border border-border/60 bg-background-secondary/40 px-3 py-2 text-xs leading-relaxed text-muted sm:text-sm">
-        {project.approachLine}
-      </p>
-
-      <ImpactChips chips={project.impactChips} className="mt-5" />
-
-      <div className="mt-5 flex flex-wrap gap-2">
-        {project.technologies.slice(0, isFeatured ? 8 : 6).map((tech) => (
-          <Badge key={tech} variant="outline">
-            {tech}
-          </Badge>
-        ))}
-        {project.technologies.length > (isFeatured ? 8 : 6) && (
-          <Badge variant="outline">
-            +{project.technologies.length - (isFeatured ? 8 : 6)}
-          </Badge>
-        )}
-      </div>
-
-      <div className="mt-6 rounded-xl border border-border bg-background-secondary/50 p-4">
-        <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted">
-          Architecture
-        </p>
-        <ArchitectureFlow steps={project.architecture} variant="compact" />
-      </div>
-
-      <ul className="mt-6 space-y-2">
-        {project.highlights.slice(0, isFeatured ? 5 : 4).map((highlight) => (
-          <li
-            key={highlight}
-            className="flex items-start gap-2 text-sm text-muted"
+          <h3
+            className={cn(
+              "font-semibold tracking-tight",
+              isFeatured ? "text-2xl sm:text-3xl" : "text-xl"
+            )}
           >
-            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
-            {highlight}
-          </li>
-        ))}
-      </ul>
+            {project.title}
+          </h3>
 
-      <div className="mt-8 flex flex-wrap gap-3">
-        <Button onClick={() => onViewDetails(project)} size="sm">
-          View Case Study
-          <ArrowUpRight className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={() => onViewDetails(project)}
-        >
-          View Details
-        </Button>
-        {project.demoUrl && (
-          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-            <Button variant="ghost" size="sm">
-              Live Demo
-              <ExternalLink className="h-4 w-4" />
-            </Button>
-          </a>
-        )}
+          <p className="mt-3 text-sm leading-relaxed text-muted sm:text-[15px]">
+            {project.shortDescription}
+          </p>
+
+          <ImpactChips chips={project.impactChips} className="mt-4" />
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.technologies.slice(0, isFeatured ? 6 : 4).map((tech) => (
+              <Badge key={tech} variant="outline">
+                {tech}
+              </Badge>
+            ))}
+          </div>
+
+          {isFeatured && (
+            <div className="mt-5">
+              <ArchitectureFlow
+                steps={project.architecture}
+                variant="horizontal"
+              />
+            </div>
+          )}
+
+          <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
+            <Link href={`/work/${project.id}`}>
+              <Button size="sm">
+                Case study
+                <ArrowUpRight className="h-4 w-4" />
+              </Button>
+            </Link>
+            {project.demoUrl && (
+              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="sm">
+                  Live demo
+                  <ExternalLink className="h-4 w-4" />
+                </Button>
+              </a>
+            )}
+          </div>
+        </div>
       </div>
     </motion.article>
   );

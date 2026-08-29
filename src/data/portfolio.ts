@@ -21,6 +21,7 @@ export interface Project {
   solution: string;
   engineeringChallenges: string[];
   outcome: string;
+  outcomeMetric: string;
   role: string;
   approachLine: string;
   impactChips: string[];
@@ -47,84 +48,68 @@ export interface SkillGroup {
 
 export const personal = {
   name: "Ramesh Bala P.R.",
+  firstName: "Ramesh Bala",
+  lastName: "P.R.",
   title: "AI-Integrated Full Stack Engineer",
   company: "Easy2Work",
   location: "Chennai, Tamil Nadu, India",
   experience: "1+ Year Professional Experience",
-  badge: "OPEN TO SOFTWARE ENGINEERING ROLES",
+  badge: "Open to software engineering roles",
   headline:
-    "Shipping production web applications with",
+    "I build production systems that turn messy business workflows into software people actually use.",
   subheadline:
-    "Full-stack development across frontend, backend, APIs, databases, and AI-powered features.",
+    "Full-stack across frontend, backend, APIs, databases, and AI-powered features.",
   credibilityLine:
-    "AI-Integrated Full Stack Engineer @ Easy2Work · Chennai · 1+ yr professional experience",
+    "Easy2Work · Chennai · Next.js, TypeScript, Node.js, PostgreSQL",
   aboutHeading: "Building software that solves real business problems.",
   aboutParagraphs: [
-    "I'm an AI-Integrated Full Stack Engineer with 1 year of professional experience building production web applications using Next.js, React, TypeScript, Node.js, and PostgreSQL at Easy2Work.",
-    "My work spans full-stack development, REST API design, third-party API integration, webhook integration, database design, authentication and security, automation workflows, and AI/LLM-powered features — with end-to-end feature ownership from architecture to deployment.",
+    "I'm a full-stack engineer at Easy2Work with a year of shipping production web apps — from Next.js interfaces to PostgreSQL schemas, webhook integrations, and Gemini-powered AI features.",
+    "I own features end-to-end: requirements, architecture, implementation, and deployment. The work that sticks with me is turning slow manual processes into systems sales teams can trust in the field.",
+  ],
+  aboutStats: [
+    { value: "4", label: "Production systems shipped" },
+    { value: "RAG", label: "In production with pgvector" },
+    { value: "E2E", label: "Feature ownership" },
   ],
 };
 
 export const skillGroups: SkillGroup[] = [
   {
-    category: "Languages",
-    skills: ["TypeScript", "JavaScript", "Python", "C#"],
-  },
-  {
     category: "Frontend",
     skills: [
       "React",
       "Next.js",
-      "HTML",
-      "CSS",
+      "TypeScript",
       "Chakra UI",
       "Ionic",
       "Responsive Design",
     ],
   },
   {
-    category: "Backend",
+    category: "Backend & Data",
     skills: [
       "Node.js",
-      "ASP.NET MVC",
       "REST APIs",
-      "API Integration",
-      "Webhook Integration",
+      "PostgreSQL",
+      "Prisma",
+      "Supabase",
+      "Webhooks",
+      "ASP.NET MVC",
     ],
   },
   {
-    category: "Frameworks & Libraries",
-    skills: ["Zod", "Zustand", "Prisma", "Capacitor", "SheetJS"],
-  },
-  {
-    category: "Databases",
-    skills: ["PostgreSQL", "Supabase", "SQL", "pgvector"],
-  },
-  {
-    category: "Security",
-    skills: [
-      "JWT",
-      "bcrypt",
-      "OTP Authentication",
-      "HMAC Signature Verification",
-      "RBAC",
-      "Rate Limiting",
-    ],
-  },
-  {
-    category: "AI",
+    category: "AI & Security",
     skills: [
       "Google Gemini",
-      "Gemini Vision",
-      "Gemini 2.5 Flash/Lite",
       "RAG",
+      "pgvector",
       "Embeddings",
       "OCR",
+      "JWT",
+      "HMAC",
+      "RBAC",
+      "OTP Auth",
     ],
-  },
-  {
-    category: "Tools",
-    skills: ["Git", "Vercel", "VS Code", "Visual Studio", "SSMS"],
   },
 ];
 
@@ -155,13 +140,14 @@ export const projects: Project[] = [
     number: "01",
     title: "QuoteBuddy — AI Quote Generation PWA",
     shortDescription:
-      "Mobile-first AI-powered quotation platform that converts natural-language requests into structured quotations.",
+      "Mobile-first AI quotation platform that turns natural-language requests into structured, exportable quotes.",
     description:
-      "A mobile-first AI-powered quotation platform that converts natural-language requests into structured quotations.",
+      "A mobile-first AI-powered quotation platform that converts natural-language requests into structured quotations from uploaded rate cards and proposals.",
     role: "Full-stack ownership — RAG pipeline, document ingestion, and mobile PWA",
     approachLine:
       "Natural-language requests → pgvector retrieval → structured quotes exported as PDF.",
-    impactChips: ["Production", "RAG + pgvector", "Gemini Embeddings", "Mobile PWA"],
+    impactChips: ["Production", "RAG + pgvector", "Mobile PWA"],
+    outcomeMetric: "~30 min → ~2 min quotes",
     featured: true,
     technologies: [
       "React",
@@ -176,27 +162,19 @@ export const projects: Project[] = [
     ],
     highlights: [
       "Natural-language quote generation",
-      "RAG pipeline",
-      "Gemini embeddings",
-      "PostgreSQL + pgvector",
-      "PDF ingestion",
-      "Excel ingestion",
-      "Image OCR",
-      "Pricing retrieval",
-      "Structured quote generation",
-      "PDF export",
-      "Offline fallback",
-      "Mobile file handling",
+      "RAG pipeline with Gemini embeddings",
+      "Multi-format document ingestion",
+      "Structured PDF export",
+      "Offline fallback + mobile file handling",
     ],
     architecture: [
-      { label: "User Request" },
-      { label: "Document / Rate Data" },
+      { label: "Request" },
+      { label: "Rate data" },
       { label: "Embeddings" },
-      { label: "pgvector Retrieval" },
+      { label: "pgvector" },
       { label: "RAG" },
       { label: "Gemini" },
-      { label: "Structured Quote" },
-      { label: "PDF" },
+      { label: "Quote PDF" },
     ],
     screenshots: [
       {
@@ -211,9 +189,9 @@ export const projects: Project[] = [
       },
     ],
     problem:
-      "Sales teams spent significant time manually searching rate cards and building quotations from proposal documents during client meetings.",
+      "Sales teams spent ~30 minutes manually searching rate cards and building quotations during client meetings.",
     solution:
-      "Built a mobile-first PWA with RAG-powered quote generation using Gemini embeddings, pgvector retrieval, multi-format document ingestion (PDF, Excel, images), and structured PDF export with offline fallback.",
+      "Built a mobile-first PWA with RAG-powered quote generation using Gemini embeddings, pgvector retrieval, multi-format document ingestion, and structured PDF export with offline fallback.",
     engineeringChallenges: [
       "Designing a RAG pipeline with pgvector for accurate pricing retrieval",
       "Building multi-format document ingestion with OCR for images",
@@ -221,25 +199,21 @@ export const projects: Project[] = [
       "Enabling offline fallback and native mobile file handling with Capacitor",
     ],
     outcome:
-      "Delivered an AI-powered quotation platform that transforms natural-language requests into professional, exportable quotes from uploaded rate data.",
+      "Cut quote turnaround from roughly 30 minutes of manual work to about 2 minutes of AI-assisted generation from uploaded rate data.",
   },
   {
     id: "lms",
     number: "02",
     title: "Lead Management Platform (LMS)",
     shortDescription:
-      "Production full-stack lead management platform for sales teams to capture, assign, track, and convert leads.",
+      "Production lead platform for capturing, assigning, tracking, and converting leads across Meta ads and outbound channels.",
     description:
       "A production full-stack lead management platform designed to help sales teams capture, assign, track, and convert leads across Meta ads, directories, and outbound channels.",
     role: "Full-stack ownership — webhooks, auth, assignment logic, and SLA automation",
     approachLine:
       "Meta Lead Ads webhooks → HMAC verification → round-robin assignment → SLA enforcement.",
-    impactChips: [
-      "Production",
-      "Meta Webhooks",
-      "HMAC Verification",
-      "JWT + OTP Auth",
-    ],
+    impactChips: ["Production", "Meta Webhooks", "HMAC + JWT"],
+    outcomeMetric: "Webhook → assign → SLA",
     featured: true,
     technologies: [
       "Next.js",
@@ -253,24 +227,19 @@ export const projects: Project[] = [
       "bcrypt",
     ],
     highlights: [
-      "Meta/Facebook Lead Ads webhook integration",
+      "Meta Lead Ads webhook integration",
       "HMAC signature verification",
-      "Automated round-robin lead assignment",
-      "Email OTP authentication",
-      "JWT sessions",
-      "Login audit logging",
-      "Rate limiting",
-      "Automated follow-up SLA enforcement",
-      "Scheduled cron jobs",
+      "Automated round-robin assignment",
+      "OTP auth + JWT sessions",
+      "SLA enforcement via cron jobs",
     ],
     architecture: [
-      { label: "Meta Lead Ads" },
+      { label: "Meta Ads" },
       { label: "Webhook" },
-      { label: "HMAC Verification" },
-      { label: "Lead Processing" },
-      { label: "Round-Robin Assignment" },
-      { label: "Sales Agent" },
-      { label: "Follow-up / Conversion" },
+      { label: "HMAC" },
+      { label: "Process" },
+      { label: "Assign" },
+      { label: "Follow-up" },
     ],
     screenshots: [
       {
@@ -285,30 +254,31 @@ export const projects: Project[] = [
       },
     ],
     problem:
-      "Sales teams needed a centralized system to capture leads from multiple channels, verify incoming webhook data securely, and assign leads fairly with SLA-based follow-up enforcement.",
+      "Sales teams needed a secure, centralized system to ingest leads from Meta, assign them fairly, and enforce follow-up SLAs.",
     solution:
-      "Built a full-stack lead management platform with Meta Lead Ads webhook integration, HMAC signature verification, automated round-robin assignment, OTP-based authentication, and scheduled cron jobs for SLA enforcement.",
+      "Built a full-stack platform with Meta webhook ingestion, HMAC verification, round-robin assignment, OTP authentication, and scheduled SLA enforcement.",
     engineeringChallenges: [
       "Implementing secure HMAC signature verification for Meta webhook payloads",
       "Designing fair round-robin lead assignment with concurrent webhook handling",
-      "Building OTP authentication flow with rate limiting and audit logging",
+      "Building OTP authentication with rate limiting and audit logging",
       "Enforcing follow-up SLAs through scheduled background jobs",
     ],
     outcome:
-      "Delivered a production lead management system that automates lead capture, secure processing, assignment, and follow-up workflows for the sales team.",
+      "Automated lead capture through secure webhook processing, fair assignment, and SLA-backed follow-up for the sales team.",
   },
   {
     id: "rms",
     number: "03",
     title: "Rate Management System (RMS)",
     shortDescription:
-      "Centralized advertising rate management platform for uploading, processing, and managing vendor rates.",
+      "Centralized platform for uploading, normalizing, and searching vendor advertising rates.",
     description:
       "A centralized advertising rate management platform that allows teams to upload, browse, manage, and process vendor advertising rates.",
     role: "Full-stack ownership — import pipelines, AI extraction, and REST API layer",
     approachLine:
       "Vendor Excel/PDF/image → column mapping & OCR → validated rate library.",
-    impactChips: ["Production", "29 REST API Routes", "Gemini Vision", "Excel Pipeline"],
+    impactChips: ["Production", "29 API routes", "Gemini Vision"],
+    outcomeMetric: "29 REST API routes",
     technologies: [
       "Next.js",
       "React",
@@ -319,24 +289,18 @@ export const projects: Project[] = [
       "Google Gemini Vision",
     ],
     highlights: [
-      "Vendor Excel import pipeline",
-      "Dynamic column mapping",
+      "Vendor Excel import with dynamic column mapping",
       "Header fingerprint learning",
-      "Spreadsheet normalization",
-      "PDF/image/handwritten rate extraction",
-      "Gemini Vision integration",
-      "REST API architecture",
+      "Gemini Vision rate extraction",
       "29 REST API routes",
       "Admin configuration tools",
     ],
     architecture: [
-      { label: "Vendor Excel / PDF / Image" },
       { label: "Upload" },
-      { label: "Column Mapping / OCR" },
-      { label: "AI Extraction" },
-      { label: "Validation" },
-      { label: "Structured Database" },
-      { label: "Searchable Rate Library" },
+      { label: "Map / OCR" },
+      { label: "Extract" },
+      { label: "Validate" },
+      { label: "Library" },
     ],
     screenshots: [
       {
@@ -351,30 +315,31 @@ export const projects: Project[] = [
       },
     ],
     problem:
-      "Advertising teams received vendor rate data in inconsistent Excel, PDF, and image formats, making it difficult to centralize and search pricing information.",
+      "Vendor rates arrived in inconsistent Excel, PDF, and image formats, making pricing hard to centralize and search.",
     solution:
-      "Built a rate management platform with Excel import pipelines, dynamic column mapping, header fingerprint learning, and Gemini Vision integration for extracting rates from PDFs and handwritten documents.",
+      "Built import pipelines with dynamic column mapping, header fingerprinting, and Gemini Vision extraction into a searchable rate library.",
     engineeringChallenges: [
-      "Building a flexible Excel import pipeline with dynamic column mapping",
-      "Implementing header fingerprint learning for recurring vendor formats",
-      "Integrating Gemini Vision for PDF, image, and handwritten rate extraction",
-      "Designing 29 REST API routes for upload, validation, and admin configuration",
+      "Flexible Excel import with dynamic column mapping",
+      "Header fingerprint learning for recurring vendor formats",
+      "Gemini Vision for PDF, image, and handwritten rates",
+      "Designing 29 REST API routes for upload, validation, and admin config",
     ],
     outcome:
-      "Created a searchable rate library that normalizes diverse vendor inputs into structured, queryable database records.",
+      "Normalized messy vendor inputs into a searchable, queryable rate library backed by 29 production API routes.",
   },
   {
     id: "adspot",
     number: "04",
     title: "AdSpot — Outdoor Media Discovery Platform",
     shortDescription:
-      "Map-first outdoor media discovery platform for browsing, filtering, and booking advertising inventory across India.",
+      "Map-first platform for browsing, filtering, and booking outdoor advertising inventory across India.",
     description:
       "A map-first outdoor media discovery platform that enables advertisers to browse, filter, and book outdoor advertising inventory across India.",
     role: "Full-stack ownership — map discovery, booking workflow, and admin console",
     approachLine:
       "Map-first discovery → geospatial filters → cart → GST-aware booking.",
-    impactChips: ["Production", "Geospatial Filtering", "Booking Workflow", "JWT Auth"],
+    impactChips: ["Production", "Geospatial", "Booking + GST"],
+    outcomeMetric: "Map → filter → book",
     technologies: [
       "Next.js",
       "React",
@@ -386,20 +351,14 @@ export const projects: Project[] = [
     highlights: [
       "Map-first inventory discovery",
       "Geospatial radius filtering",
-      "Price filtering",
-      "Availability filtering",
-      "Persistent shopping cart",
-      "Booking workflow",
-      "GST-based pricing calculation",
-      "Admin console",
-      "Real-time inventory management",
-      "JWT authentication",
+      "Persistent cart + booking flow",
+      "GST-based pricing",
+      "Admin inventory console",
     ],
     architecture: [
-      { label: "India Map" },
-      { label: "Media Locations" },
+      { label: "Map" },
       { label: "Filters" },
-      { label: "Inventory Cards" },
+      { label: "Inventory" },
       { label: "Cart" },
       { label: "Booking" },
     ],
@@ -416,17 +375,17 @@ export const projects: Project[] = [
       },
     ],
     problem:
-      "Advertisers needed a unified platform to discover outdoor media inventory across locations, filter by geography and price, and complete bookings with accurate GST calculations.",
+      "Advertisers needed one place to discover outdoor inventory by location and price, then book with accurate GST.",
     solution:
-      "Developed a map-first discovery platform with geospatial radius filtering, persistent shopping cart, booking workflow, GST-based pricing, and an admin console for real-time inventory management.",
+      "Built map-first discovery with geospatial filters, persistent cart, GST pricing, and an admin console for live inventory.",
     engineeringChallenges: [
-      "Implementing geospatial radius filtering for map-based inventory discovery",
-      "Building a persistent shopping cart with booking workflow state management",
-      "Designing GST-based pricing calculation across inventory types",
-      "Creating admin tools for real-time inventory management",
+      "Geospatial radius filtering for map-based discovery",
+      "Persistent shopping cart with booking state management",
+      "GST-based pricing across inventory types",
+      "Admin tools for real-time inventory management",
     ],
     outcome:
-      "Delivered an end-to-end outdoor media discovery and booking platform with map-first UX and admin inventory controls.",
+      "Delivered end-to-end outdoor media discovery and booking — from map search to GST-aware checkout.",
   },
 ];
 

@@ -1,12 +1,6 @@
 "use client";
 
-import { FadeUp } from "@/components/animations/FadeUp";
-import { Button } from "@/components/ui/Button";
-import { SectionLabel } from "@/components/ui/SectionLabel";
-import { siteConfig } from "@/lib/config";
-import { getSocialHref, isPlaceholderUrl } from "@/lib/utils";
-import { contactFormSchema, type ContactFormData } from "@/lib/validations";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
 import {
   ArrowUpRight,
   Code2,
@@ -16,7 +10,11 @@ import {
   MapPin,
   Send,
 } from "lucide-react";
-import { useState } from "react";
+import { FadeUp } from "@/components/animations/FadeUp";
+import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/config";
+import { cn, getSocialHref, isPlaceholderUrl } from "@/lib/utils";
+import { contactFormSchema, type ContactFormData } from "@/lib/validations";
 
 interface ContactMethod {
   id: string;
@@ -131,8 +129,7 @@ export function Contact() {
 
       setStatus("success");
       setStatusMessage(
-        data.message ??
-          "Thanks! Your message was sent. I'll reply to the email you provided."
+        data.message ?? "Thanks — I'll reply to the email you shared."
       );
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
@@ -140,32 +137,32 @@ export function Contact() {
       setStatusMessage(
         error instanceof Error
           ? error.message
-          : "Something went wrong. Please use the email link on the left."
+          : "Something went wrong. Please use email instead."
       );
     }
   };
 
   return (
-    <section id="contact" className="relative border-t border-border/80 py-20 sm:py-28">
+    <section id="contact" className="relative border-t border-border/60 py-20 sm:py-28">
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_100%,var(--accent-soft),transparent_65%)]"
         aria-hidden="true"
       />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <SectionLabel number="06" label="Contact" />
-
         <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <FadeUp>
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
+            <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
+              Contact
+            </p>
+            <h2 className="font-display text-4xl tracking-tight sm:text-5xl">
               Let&apos;s work
               <span className="block text-muted">together.</span>
             </h2>
 
             <p className="mt-6 max-w-md text-base leading-relaxed text-muted sm:text-lg">
               Open to full-time software engineering roles. I build production
-              web applications, backend systems, integrations, and AI-powered
-              products.
+              web apps, backends, integrations, and AI-powered products.
             </p>
 
             <div className="mt-8 inline-flex items-center gap-2.5 rounded-full border border-border/80 bg-card/40 px-4 py-2">
@@ -216,46 +213,34 @@ export function Contact() {
                 );
               })}
             </div>
-
-            {!emailHref && (
-              <p className="mt-4 text-xs text-muted">
-                Add{" "}
-                <code className="text-accent">NEXT_PUBLIC_EMAIL</code> to enable
-                contact links.
-              </p>
-            )}
           </FadeUp>
 
           <FadeUp delay={0.1}>
             <div className="rounded-2xl border border-border/80 bg-card/40 p-6 backdrop-blur-sm sm:p-8">
-              <div className="mb-8">
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
-                  Message
-                </p>
-                <h3 className="mt-2 text-lg font-semibold tracking-tight">
-                  Send a note
-                </h3>
-                <p className="mt-2 text-sm text-muted">
-                  Fill this out and I&apos;ll receive your message. The email
-                  field is so I can reply to you — it is not where the message
-                  is delivered.
-                </p>
-              </div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
+                Message
+              </p>
+              <h3 className="mt-2 text-lg font-semibold tracking-tight">
+                Send a note
+              </h3>
+              <p className="mt-2 text-sm text-muted">
+                Tell me about the role or project — I&apos;ll get back to you.
+              </p>
 
               {!emailConfigured && (
-                <p className="mb-6 rounded-xl border border-dashed border-border px-4 py-3 text-sm text-muted">
-                  Add <code className="text-accent">NEXT_PUBLIC_EMAIL</code> to{" "}
+                <p className="mt-6 rounded-xl border border-dashed border-border px-4 py-3 text-sm text-muted">
+                  Add <code className="text-accent">NEXT_PUBLIC_EMAIL</code> in{" "}
                   <code className="text-accent">.env.local</code> to show your
-                  email link. The send button will still try the contact API.
+                  email link.
                 </p>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              <form onSubmit={handleSubmit} className="mt-8 space-y-5" noValidate>
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="sm:col-span-1">
+                  <div>
                     <label
                       htmlFor="name"
-                      className="contact-label mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted"
+                      className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted"
                     >
                       Name
                     </label>
@@ -275,10 +260,10 @@ export function Contact() {
                     )}
                   </div>
 
-                  <div className="sm:col-span-1">
+                  <div>
                     <label
                       htmlFor="email"
-                      className="contact-label mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted"
+                      className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted"
                     >
                       Email
                     </label>
@@ -293,9 +278,6 @@ export function Contact() {
                       placeholder="you@company.com"
                       disabled={status === "loading"}
                     />
-                    <p className="mt-1.5 text-xs text-muted">
-                      For my reply only — you won&apos;t get a copy in this inbox.
-                    </p>
                     {errors.email && (
                       <p className="mt-1.5 text-xs text-red-400">
                         {errors.email}
@@ -307,7 +289,7 @@ export function Contact() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="contact-label mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted"
+                    className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted"
                   >
                     Message
                   </label>

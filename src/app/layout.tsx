@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { siteConfig } from "@/lib/config";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -93,7 +100,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} min-h-screen antialiased`}
+        className={`${dmSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} min-h-screen antialiased`}
       >
         <ThemeProvider>
           <ScrollProgress />

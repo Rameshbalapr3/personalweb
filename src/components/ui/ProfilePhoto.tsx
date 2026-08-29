@@ -1,9 +1,9 @@
 "use client";
 
-import { siteConfig } from "@/lib/config";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
+import { siteConfig } from "@/lib/config";
+import { cn } from "@/lib/utils";
 
 interface ProfilePhotoProps {
   className?: string;
@@ -12,9 +12,9 @@ interface ProfilePhotoProps {
 }
 
 const sizeMap = {
-  md: "w-20 aspect-[3/4]",
-  lg: "w-36 sm:w-40 aspect-[3/4]",
-  xl: "w-48 sm:w-52 lg:w-56 aspect-[3/4]",
+  md: "w-24 aspect-[4/5]",
+  lg: "w-44 sm:w-48 aspect-[4/5]",
+  xl: "w-56 sm:w-64 lg:w-72 aspect-[4/5]",
 };
 
 export function ProfilePhoto({
@@ -35,7 +35,7 @@ export function ProfilePhoto({
     <div className={cn("relative shrink-0", className)}>
       <div
         className={cn(
-          "hero-photo-ring relative overflow-hidden rounded-2xl bg-zinc-950",
+          "hero-photo-ring relative overflow-hidden rounded-[1.25rem] bg-zinc-950",
           sizeMap[size]
         )}
       >
@@ -44,8 +44,8 @@ export function ProfilePhoto({
             src={siteConfig.profileImage}
             alt={`${siteConfig.name} — AI-Integrated Full Stack Engineer`}
             fill
-            className="object-contain object-center"
-            sizes="(max-width: 1024px) 208px, 224px"
+            className="object-cover object-[center_20%]"
+            sizes="(max-width: 1024px) 240px, 288px"
             priority
             onError={() => setHasError(true)}
           />
